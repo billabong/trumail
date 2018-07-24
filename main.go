@@ -30,8 +30,8 @@ func main() {
 	v := verifier.NewVerifier(retrievePTR(), sourceAddr)
 
 	// Bind the API endpoints to router
-	e.GET("/v1/:format/:email", api.LookupHandler(v), authMiddleware)
-	e.GET("/v1/health", api.HealthHandler(), authMiddleware)
+	e.GET("/trumail/v1/:format/:email", api.LookupHandler(v), authMiddleware)
+	e.GET("/trumail/v1/health", api.HealthHandler(), authMiddleware)
 
 	// Listen and Serve
 	e.Logger.Fatal(e.Start(":" + port))
