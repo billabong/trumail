@@ -7,7 +7,7 @@ type Verifier struct{ hostname, sourceAddr string }
 // Lookup contains all output data for an email verification Lookup
 type Lookup struct {
 	Address
-	ValidFormat, Deliverable, FullInbox, HostExists, CatchAll bool
+	ValidFormat, Deliverable, FullInbox, HostExists, CatchAll, Disposable bool
 }
 
 // NewVerifier generates a new Verifier using the passed hostname and
