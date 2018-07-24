@@ -8,6 +8,7 @@ import (
 	"net/smtp"
 	"time"
 
+	"github.com/andreis/disposable"
 	"golang.org/x/net/idna"
 )
 
@@ -163,6 +164,15 @@ func (d *Deliverabler) IsDeliverable(email string, retry int) error {
 // order to verify the existence of a catch-all
 func (d *Deliverabler) HasCatchAll(retry int) bool {
 	return d.IsDeliverable(randomEmail(d.domain), retry) == nil
+}
+
+// Disposable checks the domain of the address in
+// order to check if it is a disposable email provider
+func (d *Deliverabler) IsDisposable(retry int) bool {
+	if disposable.Domain(d.domain) {
+		return true
+	}
+	return false
 }
 
 // Close closes the Deliverablers SMTP client connection

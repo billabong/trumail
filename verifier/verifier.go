@@ -58,5 +58,11 @@ func (v *Verifier) Verify(email string) (*Lookup, error) {
 			l.Deliverable = true
 		}
 	}
+
+	// Disposable email check. Default to false
+	l.Disposable = false
+	if del.IsDisposable(3) {
+		l.Disposable = true
+	}
 	return &l, nil
 }

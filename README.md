@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/sdwolfe32/trumail.svg?style=svg)](https://circleci.com/gh/sdwolfe32/trumail)
 [![GoDoc](https://godoc.org/github.com/sdwolfe32/trumail/verifier?status.svg)](https://godoc.org/github.com/sdwolfe32/trumail/verifier)
 
-Trumail is a free and open source email validation/verification system. It is available in three forms, the Golang client library `verifier` for use in your own Go projects, a public API endpoint (more info: https://trumail.io), and a public Docker image on DockerHub (see: https://hub.docker.com/r/sdwolfe32/trumail/). 
+Trumail is a free and open source email validation/verification system. It is available in three forms, the Golang client library `verifier` for use in your own Go projects, a public API endpoint (more info: https://trumail.io), and a public Docker image on DockerHub (see: https://hub.docker.com/r/sdwolfe32/trumail/).
 
 NOTE: While we do offer a managed, enterprise level service to paying customers, it is highly recommended that you host the service yourself either using a Docker image or by forking and serving this project on your own instance. Please keep in mind, self-hosting Trumail requires bidirectional communication on port 25 which most residential ISPs restrict - AWS and Digitalocean both permit this sort of communication.
 
@@ -27,7 +27,7 @@ import (
 
 func main() {
   v := trumail.NewVerifier("YOUR_HOSTNAME.COM", "YOUR_EMAIL@DOMAIN.COM")
-  
+
   // Validate a single address
   log.Println(v.Verify("test@gmail.com"))
 }
@@ -59,6 +59,12 @@ RCPT TO: test-email@example.com // Set the recipient and receive a (200, 500, et
 QUIT                            // Cancel the transaction, we have all the info we need
 ```
 As you can see we first form a tcp connection with the mail server on port 25. We then identify ourselves as example.com and set a reply-to email of admin@example.com (both these are configured via the SOURCE_ADDR environment variable). The last, and obviously most important step in this process is the RCPT command. This is where, based on the response from the mail server, we are able to conclude the deliverability of a given email address. A 200 implies a valid inbox and anything else implies either an error with our connection to the mail server, or a problem with the address requested.
+
+## Disposable email provider check
+
+Embedding a third-party go library https://github.com/andreis/disposable to enable disposable email provider.
+
+Follow the instructions to generate the list of domains
 
 The BSD 3-clause License
 ========================

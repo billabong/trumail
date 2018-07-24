@@ -20,6 +20,7 @@ type Lookup struct {
 	FullInbox   bool     `json:"fullInbox" xml:"fullInbox"`
 	HostExists  bool     `json:"hostExists" xml:"hostExists"`
 	CatchAll    bool     `json:"catchAll" xml:"catchAll"`
+	Disposable  bool     `json:"disposable" xml:"disposable"`
 }
 
 // LookupHandler performs a single email verification and returns
@@ -41,6 +42,7 @@ func LookupHandler(v *verifier.Verifier) echo.HandlerFunc {
 			FullInbox:   lookup.FullInbox,
 			HostExists:  lookup.HostExists,
 			CatchAll:    lookup.CatchAll,
+			Disposable:  lookup.Disposable,
 		})
 	}
 }
