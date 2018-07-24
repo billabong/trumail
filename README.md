@@ -22,7 +22,7 @@ package main
 import (
 	"log"
 
-	trumail "github.com/sdwolfe32/trumail/verifier"
+	trumail "github.com/billabong/trumail/verifier"
 )
 
 func main() {
@@ -36,15 +36,15 @@ func main() {
 ## Running with Go
 
 ```
-go get -d github.com/sdwolfe32/trumail/...
-go install github.com/sdwolfe32/trumail
+go get -d github.com/billabong/trumail/...
+go install github.com/billabong/trumail
 trumail
 ```
 
 ## Running with Docker
 
 ```
-docker run -p 8080:8080 -e SOURCE_ADDR=my.email@gmail.com sdwolfe32/trumail
+docker run -p 8080:8080 -e SOURCE_ADDR=my.email@gmail.com billabong/trumail
 ```
 
 ## How it Works
